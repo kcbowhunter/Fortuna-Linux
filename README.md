@@ -1,5 +1,6 @@
 # Fortuna-Linux
-This is an implementation of the Fortuna PRNG for Linux using native C++11 threads.
+This is an implementation of the Fortuna PRNG for Linux using native C++11 threads.  The description of Fortuna is found here:
+https://www.amazon.com/Practical-Cryptography-Niels-Ferguson/dp/0471223573/ref=sr_1_11
 
 In my design, each pool and each source execute on their own thread.  This is done so that the ordering of the source bytes added to each pool is made more difficult to predict.  Each pool is protected by a Mutex, and the operating system decides which Source thread adds data to the pool when multiple Sources are simultaneously adding source bytes to a given pool.  This use of these threads will slow down the CSPRNG and increase the compute load, but this is a trade off to provide greater security and make it more difficult for an attacker to reverse engineer or duplicate the results of the CSPRNG.
 

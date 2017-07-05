@@ -1,21 +1,15 @@
 
-#ifndef POOL_INCLUDE
-#define POOL_INCLUDE
+#include <vector>
+using namespace std;
 
-#include "FortunaTypes.h"
-
-class Pool 
+class Pool
 {
-public:
-   Pool();
-  ~Pool();
+   public:
+      Pool();
+     ~Pool();
 
-   void AddByte(const unsigned char);
-   unsigned char GetLastByte() const;
+      void AddByte(const unsigned char uc);
 
-private:
-   ucvector m_poolData;
+   private:
+      vector<unsigned char> m_data;
 };
-
-
-#endif

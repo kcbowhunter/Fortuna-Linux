@@ -1,26 +1,35 @@
 
-
+#include <stdio.h>
+#include "Fortuna.h"
 #include "PoolManager.h"
 #include "Pool.h"
 
-PoolManager::PoolManager()
-{
 
+PoolManager::PoolManager(Fortuna *pFortuna)
+   :
+   m_pFortuna(pFortuna)
+{
+   bool dumpCtor = pFortuna->DumpCtor();
+   if (dumpCtor) printf("PoolManager Ctor\n");
+
+   m_pools.resize(16);
+   for (int i=0; i<16; ++i)
+      {
+         Pool *p = new Pool();
+         m_pools[i] = p;
+      }
 }
 
 PoolManager::~PoolManager()
 {
 
-}
+   bool dumpCtor = m_pFortuna->DumpCtor();
 
-bool PoolManager::CreatePools(const int count)
-{
-   m_pools.resize(count);
-
-   for(int i=0; i<count; ++i)
+   for( Pool * p : m_pools)
       {
-         Pool *p = new Pool();
-         m_pools[i] = p;
-      }   
-   return true;
+         delete p;
+      }
+   m_pools.clear();
+
+   if (dumpCtor) printf("PoolManager Dtor\n");
 }

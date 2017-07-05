@@ -1,0 +1,24 @@
+
+all: PoolTest.exe
+
+PoolTest.exe: PoolTest.o Pool.o TestManager.o TestBase.o PoolTests.o
+	g++ PoolTest.o Pool.o TestManager.o TestBase.o PoolTests.o  -o PoolTest.exe
+
+PoolTest.o: PoolTest.cpp
+	g++ -c PoolTest.cpp -o PoolTest.o
+
+Pool.o: Pool.cpp Pool.h
+	g++ -c Pool.cpp -o Pool.o
+
+TestManager.o: TestManager.cpp TestManager.h
+	g++ -c TestManager.cpp -o TestManager.o
+
+TestBase.o: TestBase.cpp TestBase.h
+	g++ -c TestBase.cpp -o TestBase.o
+
+PoolTests.o: PoolTests.cpp PoolTests.h
+	g++ -c PoolTests.cpp -o PoolTests.o
+
+clean:
+	rm Pool.o PoolTest.o TestManager.o TestBase.o PoolTests.o  PoolTest.exe 
+

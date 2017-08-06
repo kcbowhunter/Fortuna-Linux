@@ -1,3 +1,7 @@
+// Copyright (c) 2017 Ronald Bondy
+// Distributed under the MIT software license, see the accompanying
+// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
 
 #include <stdio.h>
 #include "Fortuna.h"
@@ -15,14 +19,13 @@ PoolManager::PoolManager(Fortuna *pFortuna)
    m_pools.resize(16);
    for (int i=0; i<16; ++i)
       {
-         Pool *p = new Pool();
+         Pool *p = new Pool(this);
          m_pools[i] = p;
       }
 }
 
 PoolManager::~PoolManager()
 {
-
    bool dumpCtor = m_pFortuna->DumpCtor();
 
    for( Pool * p : m_pools)

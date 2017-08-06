@@ -8,15 +8,17 @@
 
 Pool::Pool(PoolManager* poolManager)
    :
-    m_poolManager(poolManager)
+    m_poolManager(poolManager),
+    m_shutdownFlag(nullptr)
 {
+    m_shutdownFlag = m_poolManager->GetShutdownFlag();
 }
 
 Pool::~Pool()
 {
 }
 
-void Pool::AddByte(const unsigned char uc)
+void Pool::AddByte(unsigned char uc)
 {
    m_data.push_back(uc);
 }

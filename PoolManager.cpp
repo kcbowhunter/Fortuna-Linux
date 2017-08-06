@@ -36,3 +36,12 @@ PoolManager::~PoolManager()
 
    if (dumpCtor) printf("PoolManager Dtor\n");
 }
+
+// Return the shutdown flag from Fortuna owner
+bool *PoolManager::GetShutdownFlag() const
+{
+   return m_pFortuna->GetShutdownFlag();
+}
+
+void PoolManager::ThreadExecute()
+{}

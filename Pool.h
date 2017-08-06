@@ -14,9 +14,10 @@ class Pool
       Pool(PoolManager* poolManager);
      ~Pool();
 
-      void AddByte(const unsigned char uc);
+      void AddByte(unsigned char uc);
 
    private:
       vector<unsigned char> m_data;
       PoolManager *m_poolManager;
+      bool *m_shutdownFlag;
 };

@@ -3,7 +3,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 
-#include <stdio.h>
+#include <cstdio>
 #include "Fortuna.h"
 #include "PoolManager.h"
 #include "Pool.h"
@@ -19,7 +19,7 @@ PoolManager::PoolManager(Fortuna *pFortuna)
    m_pools.resize(16);
    for (int i=0; i<16; ++i)
       {
-         Pool *p = new Pool(this);
+         auto *p = new Pool(this);
          m_pools[i] = p;
       }
 }

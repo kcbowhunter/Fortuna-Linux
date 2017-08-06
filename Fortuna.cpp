@@ -3,7 +3,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 
-#include <stdio.h>
+#include <cstdio>
 #include "Fortuna.h"
 #include "PoolManager.h"
 

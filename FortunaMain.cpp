@@ -3,16 +3,15 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 
-#include <stdio.h>
+#include <cstdio>
 #include "Fortuna.h"
 #include <unistd.h>
-
 
 int main(int argc, char* argv[])
 {
    printf("\nHello Fortuna-Linux!\n\n");
 
-   Fortuna *pFortuna = new Fortuna();
+   auto *pFortuna = new Fortuna();
 
    sleep(3);
 

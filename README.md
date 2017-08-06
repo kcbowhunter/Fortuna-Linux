@@ -8,4 +8,4 @@ Also, in my implementation the data from each Source is encrypted using CTR mode
 
 In the Fortuna algorithm from Schneier and Ferguson, n bytes of data from a Source are sent to a Pool.  In my implementation, individual bytes are spread over the pools (after the bytes are encrypted to add an extra layer of security).
 
-Sources used in my implementation include \dev\random and also many different operating system operations that are timed using the rdtsc() counter.  Using rdtsc() makes it very difficult for an attacker to reproduce the results of the CSPRNG.
+Sources used in my implementation include /dev/random and also many different operating system operations that are timed using the rdtsc() counter.  Using rdtsc() makes it very difficult for an attacker to reproduce the results of the CSPRNG.

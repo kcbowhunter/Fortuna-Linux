@@ -14,6 +14,9 @@ class Pool
       explicit Pool(PoolManager* poolManager);
      ~Pool();
 
+      // disallow the default constructor
+      Pool()=delete;
+
       // disallow copying
       Pool& operator=(const Pool&)=delete;
       Pool(const Pool&)=delete;

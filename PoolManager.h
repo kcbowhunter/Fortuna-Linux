@@ -14,6 +14,9 @@ class PoolManager
 
     bool *GetShutdownFlag() const;
 
+    // disallow the default constructor
+    PoolManager()=delete;
+
     // disallow copying
     PoolManager& operator=(const PoolManager&)=delete;
     PoolManager(const PoolManager&)=delete;

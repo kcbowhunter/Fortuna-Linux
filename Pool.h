@@ -11,13 +11,22 @@ class PoolManager;
 class Pool
 {
    public:
-      Pool(PoolManager* poolManager);
+      explicit Pool(PoolManager* poolManager);
      ~Pool();
 
-      void AddByte(unsigned char uc);
+      // disallow copying
+      Pool& operator=(const Pool&)=delete;
+      Pool(const Pool&)=delete;
+
+      // disallow moving
+      Pool& operator=(Pool&& )=delete;
+      Pool(Pool&&)=delete;
+
+      void AddByte(unsigned char);
 
    private:
       vector<unsigned char> m_data;
       PoolManager *m_poolManager;
       bool *m_shutdownFlag;
+
 };

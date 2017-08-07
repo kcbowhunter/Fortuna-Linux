@@ -11,7 +11,16 @@ class Fortuna
       Fortuna();
      ~Fortuna();
 
-      bool DumpCtor() const { return m_dumpCtor; }
+    // disallow copying
+    Fortuna& operator=(const Fortuna&)=delete;
+    Fortuna(const Fortuna&)=delete;
+
+    // disallow moving
+    Fortuna& operator=(Fortuna&& )=delete;
+    Fortuna(Fortuna&&)=delete;
+
+
+    bool DumpCtor() const { return m_dumpCtor; }
 
       bool *GetShutdownFlag() { return &m_shutDown;}
 

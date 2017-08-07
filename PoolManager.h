@@ -9,10 +9,18 @@ class Fortuna;
 class PoolManager
 {
    public:
-      PoolManager(Fortuna *);
+      explicit PoolManager(Fortuna *);
      ~PoolManager();
 
     bool *GetShutdownFlag() const;
+
+    // disallow copying
+    PoolManager& operator=(const PoolManager&)=delete;
+    PoolManager(const PoolManager&)=delete;
+
+    // disallow moving
+    PoolManager& operator=(PoolManager&& )=delete;
+    PoolManager(PoolManager&&)=delete;
 
     // Main thread execute method
     void ThreadExecute();

@@ -3,5 +3,5 @@ project(Fortuna-Linux)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES FortunaMain.cpp Fortuna.cpp Fortuna.h FortunaTypes.h Pool.cpp Pool.h Source.cpp Source.h PoolManager.cpp PoolManager.h)
+set(SOURCE_FILES FortunaMain.cpp Fortuna.cpp Fortuna.h FortunaTypes.h Pool.cpp Pool.h Source.cpp Source.h PoolManager.cpp PoolManager.h SleepUtils.cpp SleepUtils.h)
 add_executable(FortunaMain ${SOURCE_FILES})

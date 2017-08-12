@@ -5,6 +5,10 @@
 
 #include "Pool.h"
 #include "PoolManager.h"
+#include "SleepUtils.h"
+
+using namespace SleepUtils;
+
 
 Pool::Pool(PoolManager* poolManager)
    :
@@ -21,4 +25,18 @@ Pool::~Pool()
 void Pool::AddByte(unsigned char uc)
 {
    m_data.push_back(uc);
+}
+
+// Main thread execute method
+void Pool::ThreadExecute()
+{
+    while(true)
+    {
+        sleep_ms(200);
+
+        if (*m_shutdownFlag == false)
+        {
+            break;
+        }
+    }
 }

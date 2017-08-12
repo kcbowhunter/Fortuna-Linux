@@ -3,6 +3,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <vector>
+#include <pthread.h>
 
 using namespace std;
 
@@ -12,7 +13,7 @@ class Fortuna;
 class PoolManager
 {
    public:
-      explicit PoolManager(Fortuna *);
+      explicit PoolManager(Fortuna *, int numberOfPools);
      ~PoolManager();
 
     bool *GetShutdownFlag() const;
@@ -28,11 +29,17 @@ class PoolManager
     PoolManager& operator=(PoolManager&& )=delete;
     PoolManager(PoolManager&&)=delete;
 
+    int GetNumberOfPools() const { return m_numberOfPools;}
+
     // Main thread execute method
     void ThreadExecute();
 
    private:
       Fortuna *m_pFortuna;
       vector<Pool*> m_pools;
+      int m_numberOfPools;
+      vector<pthread_t> m_poolThreads;
+   private:
+      void JoinPoolThreads();
 
 };

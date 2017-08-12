@@ -14,6 +14,7 @@ class Pool
       explicit Pool(PoolManager* poolManager);
      ~Pool();
 
+    public:
       // disallow the default constructor
       Pool()=delete;
 
@@ -27,9 +28,11 @@ class Pool
 
       void AddByte(unsigned char);
 
-   private:
+    // Main thread execute method
+    void ThreadExecute();
+
+private:
       vector<unsigned char> m_data;
       PoolManager *m_poolManager;
       bool *m_shutdownFlag;
-
 };

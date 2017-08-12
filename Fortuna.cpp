@@ -14,12 +14,16 @@ Fortuna::Fortuna()
    m_shutDown(false)
 {
    if (m_dumpCtor) printf("Fortuna Ctor\n");
-   m_poolManager = new PoolManager(this);
+
+    int numberOfPools = 32;
+
+   m_poolManager = new PoolManager(this, numberOfPools);
 }
 
 Fortuna::~Fortuna()
 {
+    if (m_dumpCtor) printf("Begin Fortuna Dtor\n");
     m_shutDown= true;
-   delete m_poolManager;
-   if (m_dumpCtor) printf("Fortuna Dtor\n");
+    delete m_poolManager;
+    if (m_dumpCtor) printf("End Fortuna Dtor\n");
 }

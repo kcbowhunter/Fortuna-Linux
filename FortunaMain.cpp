@@ -9,7 +9,8 @@
 
 int main(int argc, char* argv[])
 {
-   printf("\nHello Fortuna-Linux!\n\n");
+   pid_t pid = getpid();
+   printf("\nHello Fortuna-Linux!\n   pid=%lu\n", (unsigned long)pid);
 
    auto *pFortuna = new Fortuna();
 

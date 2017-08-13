@@ -15,32 +15,34 @@ class Pool
       explicit Pool(PoolManager* poolManager, int poolNumber);
      ~Pool();
 
-    public:
-      // disallow the default constructor
-      Pool()=delete;
-
-      // disallow copying
-      Pool& operator=(const Pool&)=delete;
-      Pool(const Pool&)=delete;
-
-      // disallow moving
-      Pool& operator=(Pool&& )=delete;
-      Pool(Pool&&)=delete;
 
       void AddByte(unsigned char);
 
-    // Main thread execute method
-    void ThreadExecute();
+      // Main thread execute method
+      void ThreadExecute();
 
-private:
-      // Owner
-      PoolManager *m_poolManager;
+   private:
+        // Owner
+        PoolManager *m_poolManager;
 
-      // Pool Number
-      int m_poolNumber;
-      // pool data
-      vector<unsigned char> m_data;
+        // Pool Number
+        int m_poolNumber;
+        // pool data
+        vector<unsigned char> m_data;
 
-      bool *m_shutdownFlag;
-      pthread_mutex_t m_poolMutex;
+        bool *m_shutdownFlag;
+        pthread_mutex_t m_poolMutex;
+
+   public:
+        // disallow the default constructor
+        Pool()=delete;
+
+        // disallow copying
+        Pool& operator=(const Pool&)=delete;
+        Pool(const Pool&)=delete;
+
+        // disallow moving
+        Pool& operator=(Pool&& )=delete;
+        Pool(Pool&&)=delete;
+
 };

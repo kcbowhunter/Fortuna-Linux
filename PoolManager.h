@@ -18,16 +18,6 @@ class PoolManager
 
     bool *GetShutdownFlag() const;
 
-    // disallow the default constructor
-    PoolManager()=delete;
-
-    // disallow copying
-    PoolManager& operator=(const PoolManager&)=delete;
-    PoolManager(const PoolManager&)=delete;
-
-    // disallow moving
-    PoolManager& operator=(PoolManager&& )=delete;
-    PoolManager(PoolManager&&)=delete;
 
     int GetNumberOfPools() const { return m_numberOfPools;}
 
@@ -41,5 +31,17 @@ class PoolManager
       vector<pthread_t> m_poolThreads;
    private:
       void JoinPoolThreads();
+
+    public:
+        // disallow the default constructor
+        PoolManager()=delete;
+
+        // disallow copying
+        PoolManager& operator=(const PoolManager&)=delete;
+        PoolManager(const PoolManager&)=delete;
+
+        // disallow moving
+        PoolManager& operator=(PoolManager&& )=delete;
+        PoolManager(PoolManager&&)=delete;
 
 };

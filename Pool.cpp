@@ -10,21 +10,29 @@
 using namespace SleepUtils;
 
 
-Pool::Pool(PoolManager* poolManager)
+Pool::Pool(PoolManager* poolManager, int poolNumber)
    :
     m_poolManager(poolManager),
-    m_shutdownFlag(nullptr)
+    m_poolNumber(poolNumber),
+    m_shutdownFlag(nullptr),
+    m_poolMutex(PTHREAD_MUTEX_INITIALIZER)
 {
     m_shutdownFlag = m_poolManager->GetShutdownFlag();
+    int status = pthread_mutex_init(&m_poolMutex, nullptr);
 }
 
 Pool::~Pool()
 {
+    int status = pthread_mutex_destroy(&m_poolMutex);
 }
 
 void Pool::AddByte(unsigned char uc)
 {
+   int status = pthread_mutex_lock(&m_poolMutex);
+
    m_data.push_back(uc);
+
+   status = pthread_mutex_unlock(&m_poolMutex);
 }
 
 // Main thread execute method

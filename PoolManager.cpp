@@ -28,7 +28,7 @@ PoolManager::PoolManager(Fortuna *pFortuna, int numberOfPools)
     m_pools.resize(m_numberOfPools);
     for (int i=0; i<m_numberOfPools; ++i)
       {
-         auto *pool = new Pool(this);
+         auto *pool = new Pool(this, i);
          m_pools[i] = pool;
          threadStatus = pthread_create(&threadId, NULL, StartPoolThread, (void*)pool);
          m_poolThreads.push_back(threadId);

@@ -1,5 +1,7 @@
 .CLion/*
 *.exe
+*.o
+FortunaMain
 .idea/
 cmake-build-debug/
 CMakeFiles/

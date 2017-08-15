@@ -7,6 +7,10 @@
 /// Each source runs on their own thread
 
 class SourceManager;
+class Pool;
+
+#include <vector>
+using namespace std;
 
 /// Base Class for all Sources
 /// Derived Classes must
@@ -19,10 +23,12 @@ class Source
     // Main thread execute method
     virtual void ThreadExecute() = 0;
 
+    int SourceNumber() const { return m_sourceNumber;}
 
 private:
         SourceManager *m_sourceManager;
         int m_sourceNumber;
+        vector<Pool*> m_pools;
 
 public:
     // disallow the default constructor

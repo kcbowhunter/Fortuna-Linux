@@ -7,6 +7,8 @@
 
 class Fortuna;
 class Source;
+class Pool;
+class PoolManager;
 
 #include <vector>
 using namespace std;
@@ -19,7 +21,9 @@ public:
 
 private:
     Fortuna *m_pFortuna;
+    PoolManager *m_poolManager;
     vector<Source*> m_sources;
+    vector<Pool*> m_pools;
 
 public:
     // disallow the default constructor

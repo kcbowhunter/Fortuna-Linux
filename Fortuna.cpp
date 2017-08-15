@@ -6,12 +6,15 @@
 #include <cstdio>
 #include "Fortuna.h"
 #include "PoolManager.h"
+#include "SourceManager.h"
 
 
 Fortuna::Fortuna()
    :
    m_dumpCtor(true),
-   m_shutDown(false)
+   m_shutDown(false),
+   m_poolManager(nullptr),
+   m_sourceManager(nullptr)
 {
    if (m_dumpCtor) printf("Fortuna Ctor\n");
 

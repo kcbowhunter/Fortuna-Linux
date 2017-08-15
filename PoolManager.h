@@ -24,6 +24,8 @@ class PoolManager
     // Main thread execute method
     void ThreadExecute();
 
+    vector<Pool*> GetPools() { return m_pools;}
+
    private:
       Fortuna *m_pFortuna;
       vector<Pool*> m_pools;

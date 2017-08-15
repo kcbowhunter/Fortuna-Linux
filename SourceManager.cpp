@@ -3,6 +3,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "SourceManager.h"
+#include "PoolManager.h"
 #include "Source.h"
 #include "Fortuna.h"
 
@@ -16,9 +17,10 @@ void *StartSourceThread(void *arg)
 
 SourceManager::SourceManager(Fortuna *fortuna)
     :
-    m_pFortuna(fortuna)
+    m_pFortuna(fortuna),
+    m_poolManager(fortuna->GetPoolManager())
 {
-
+    m_pools = m_poolManager->GetPools();
 }
 
 SourceManager::~SourceManager()

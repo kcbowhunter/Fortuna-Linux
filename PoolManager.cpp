@@ -18,7 +18,8 @@ void *StartPoolThread(void *arg)
 PoolManager::PoolManager(Fortuna *pFortuna, int numberOfPools)
    :
    m_pFortuna(pFortuna),
-   m_numberOfPools(numberOfPools)
+   m_numberOfPools(numberOfPools),
+   m_bPoolMgrIsShutdown(false)
 {
    bool dumpCtor = pFortuna->DumpCtor();
    if (dumpCtor) printf("PoolManager Ctor\n");
@@ -65,11 +66,21 @@ void PoolManager::ThreadExecute()
 // Join each of the pool threads
 void PoolManager::JoinPoolThreads()
 {
+    if (m_bPoolMgrIsShutdown )
+        return;
+
     int count = 0;
     int status = 0;
+    bool dumpCtor = m_pFortuna->DumpCtor();
     for(auto tid: m_poolThreads)
     {
-        printf("Joining thread %2d 0x%lx\n", count++, (unsigned long)tid);
+        if (dumpCtor)
+        {
+            printf("Joining thread %2d 0x%lx\n", count++, (unsigned long)tid);
+        }
+
         status = pthread_join(tid, NULL);
     }
+
+    m_bPoolMgrIsShutdown = true;
 }

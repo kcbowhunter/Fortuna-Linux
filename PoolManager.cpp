@@ -21,7 +21,7 @@ PoolManager::PoolManager(Fortuna *pFortuna, int numberOfPools)
    m_bPoolMgrIsShutdown(false)
 {
    bool dumpCtor = pFortuna->DumpCtor();
-   if (dumpCtor) printf("PoolManager Ctor\n");
+   if (dumpCtor) printf("Enter PoolManager Ctor\n");
 
     pthread_t threadId = 0;
     int threadStatus = 0;
@@ -30,9 +30,13 @@ PoolManager::PoolManager(Fortuna *pFortuna, int numberOfPools)
       {
          auto *pool = new Pool(this, i);
          m_pools[i] = pool;
+
+//         if (dumpCtor) printf("Create Pool Thread %d\n", i);
          threadStatus = pthread_create(&threadId, NULL, StartPoolThread, (void*)pool);
          m_poolThreads.push_back(threadId);
       }
+
+    if (dumpCtor) printf("Exit PoolManager Ctor\n");
 }
 
 

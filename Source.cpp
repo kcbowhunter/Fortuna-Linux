@@ -2,7 +2,6 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-
 #include "Source.h"
 #include "SourceManager.h"
 #include "ISourceBytes.h"
@@ -15,15 +14,17 @@ using namespace SleepUtils;
 
 Source::Source(SourceManager *sourceManager, int sourceNumber, ISourceBytes *pSourceBytes)
 :
+    m_pFortuna(sourceManager->GetFortuna()),
     m_sourceManager(sourceManager),
     m_sourceNumber(sourceNumber),
     m_pSourceBytes(pSourceBytes)
 {
 }
 
-Source::Source(ISourceBytes *pSourceBytes)
+Source::Source(Fortuna *pFortuna, ISourceBytes *pSourceBytes)
         :
-        m_sourceManager(nullptr),
+        m_pFortuna(pFortuna),
+        m_sourceManager(pFortuna->GetSourceManager()),
         m_sourceNumber(-1),
         m_pSourceBytes(pSourceBytes),
         m_shutdownFlag(nullptr)
@@ -46,6 +47,9 @@ Source::~Source()
 // Main thread execute method
 void Source::ThreadExecute()
 {
+    bool dump = true;
+    if (dump) printf("Begin Source::ThreadExecute %d\n", m_sourceNumber);
+
     if (*m_shutdownFlag == true)
         return;
 
@@ -82,5 +86,5 @@ void Source::ThreadExecute()
 
     }
 
-
+    if (dump) printf("End Source::ThreadExecute %d\n", m_sourceNumber);
 }

@@ -12,6 +12,7 @@ class Pool;
 #include <vector>
 using namespace std;
 
+class Fortuna;
 class ISourceBytes;
 
 /// Base Class for all Sources
@@ -20,7 +21,7 @@ class Source
 {
    public:
       Source(SourceManager *sourceManager, int sourceNumber, ISourceBytes *pSourceBytes);
-      Source(ISourceBytes *pSourceBytes);
+      Source(Fortuna *pFortuna, ISourceBytes *pSourceBytes);
 
      ~Source();
 
@@ -28,8 +29,10 @@ class Source
     virtual void ThreadExecute();
 
     int SourceNumber() const { return m_sourceNumber;}
+    void SetSourceNumber(int n) { m_sourceNumber = n;}
 
 private:
+        Fortuna *m_pFortuna;
         SourceManager *m_sourceManager;
         int m_sourceNumber;
         vector<Pool*> m_pools;

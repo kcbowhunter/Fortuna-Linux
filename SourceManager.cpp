@@ -45,13 +45,18 @@ bool SourceManager::AssignSourcesAndStartThreads(std::vector<Source*>& sources)
 {
     m_sources = sources; // copy the pointers to the Source objects
 
+    bool dump = true;
+
     pthread_t threadId = 0;
     int threadStatus = 0;
     for (Source* source: m_sources)
     {
-        threadStatus = pthread_create(&threadId, NULL, StartSourceThread, (void*)source);
-        m_sourceThreads.push_back(threadId);
+        threadId = 0;
 
+        threadStatus = pthread_create(&threadId, NULL, StartSourceThread, (void*)source);
+        if (dump) printf("SourceMgr::AssignSourcesStartThreads thread tid=0x%lx\n", (unsigned long) threadId);
+
+        m_sourceThreads.push_back(threadId);
     }
     return true;
 }

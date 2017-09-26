@@ -16,13 +16,15 @@ Fortuna::Fortuna()
    m_poolManager(nullptr),
    m_sourceManager(nullptr)
 {
-   if (m_dumpCtor) printf("Fortuna Ctor\n");
+   if (m_dumpCtor) printf("Enter Fortuna Ctor\n");
 
    int numberOfPools = 32;
 
    m_poolManager = new PoolManager(this, numberOfPools);
 
    m_sourceManager = new SourceManager(this);
+
+   if (m_dumpCtor) printf("Exit Fortuna Ctor\n");
 }
 
 Fortuna::~Fortuna()

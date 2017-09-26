@@ -26,13 +26,16 @@ class PoolManager
 
     vector<Pool*> GetPools() { return m_pools;}
 
+    void JoinPoolThreads();
+
    private:
       Fortuna *m_pFortuna;
-      vector<Pool*> m_pools;
-      int m_numberOfPools;
-      vector<pthread_t> m_poolThreads;
+      vector<Pool*> m_pools;  // Pool of data for the cs pseudo random number generator
+      int m_numberOfPools;    // Number of pools of bytes
+      vector<pthread_t> m_poolThreads;  // Thread id for each pool
+      bool m_bPoolMgrIsShutdown;
    private:
-      void JoinPoolThreads();
+
 
     public:
         // disallow the default constructor

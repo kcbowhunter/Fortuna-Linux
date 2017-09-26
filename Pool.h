@@ -15,7 +15,7 @@ class Pool
       explicit Pool(PoolManager* poolManager, int poolNumber);
      ~Pool();
 
-
+      // Add a single byte to the pool
       void AddByte(unsigned char);
 
       // Main thread execute method

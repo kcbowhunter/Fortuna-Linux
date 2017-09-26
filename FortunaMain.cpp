@@ -22,7 +22,6 @@ int main(int argc, char* argv[])
         printf("FortunaMain %d seconds\n", ++count);
     }
 
-
    delete pFortuna;
 
    return 0;

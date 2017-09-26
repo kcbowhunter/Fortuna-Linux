@@ -42,7 +42,7 @@ void Pool::ThreadExecute()
     {
         sleep_ms(200);
 
-        if (*m_shutdownFlag == false)
+        if (*m_shutdownFlag == true)
         {
             break;
         }

@@ -4,17 +4,17 @@
 
 #include "IntegerSource.h"
 
-IntegerSource::IntegerSource(SourceManager *sourceManager, int sourceNumber)
-        :
-        Source(sourceManager, sourceNumber)
-{
-}
+//IntegerSource::IntegerSource(SourceManager *sourceManager, int sourceNumber)
+//        :
+//        Source(sourceManager, sourceNumber)
+//{
+//}
 
 
 // Main thread execute method
-void IntegerSource::ThreadExecute()
-{
-    int sourceNumber = SourceNumber();
+//void IntegerSource::ThreadExecute()
+//{
+//    int sourceNumber = SourceNumber();
 
 
-}
+//}

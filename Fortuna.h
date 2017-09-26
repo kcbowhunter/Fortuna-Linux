@@ -4,7 +4,10 @@
 
 class PoolManager;
 class SourceManager;
+class Source;
 
+#include <vector>
+using namespace std;
 
 class Fortuna
 {
@@ -27,6 +30,16 @@ class Fortuna
 
     PoolManager *GetPoolManager() { return m_poolManager;}
     SourceManager *GetSourceManager() { return m_sourceManager; }
+
+    // Set the sources in Fortuna and start the source threads
+    bool AssignSourcesAndStartThreads(vector<Source*>& sources);
+
+    // Wait for the Sources to shutdown
+    // This is used for testing different Source options
+    bool WaitForSourceShutdown();
+
+    // Shutown Fortuna, ie Source and Pool threads
+    bool Shutdown();
 
    private:
       PoolManager *m_poolManager;

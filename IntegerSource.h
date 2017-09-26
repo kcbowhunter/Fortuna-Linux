@@ -8,21 +8,20 @@
 
 #include "Source.h"
 
-class SourceManager;
+//class SourceManager;
 
-class IntegerSource : public Source
-{
-public:
-    IntegerSource(SourceManager *sourceManager, int sourceNumber);
+//class IntegerSource : public Source
+//{
+//public:
+//    IntegerSource(SourceManager *sourceManager, int sourceNumber);
 
     // Main thread execute method
-    virtual void ThreadExecute();
+//    virtual void ThreadExecute();
 
-private:
+//private:
 
 
-
-};
+//};
 
 
 #endif //FORTUNA_LINUX_INTEGERSOURCE_H

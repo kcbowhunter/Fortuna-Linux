@@ -11,6 +11,7 @@ using namespace std;
 #include "Source.h"
 #include "SourceFixedInteger.h"
 #include <cstdio>
+#include "SleepUtils.h"
 
 IntegerTask::IntegerTask()
 {
@@ -25,6 +26,8 @@ IntegerTask::~IntegerTask()
 
 bool IntegerTask::RunTask()
 {
+    bool status = true;
+
     bool dump = true;
     if (dump) printf("Enter IntegerTask::RunTask\n");
 
@@ -57,6 +60,8 @@ bool IntegerTask::RunTask()
     if (dump) printf("\t\tAssignSourcesAndStartThreads\n");
     pFortuna->AssignSourcesAndStartThreads(sources);
 
+    SleepUtils::sleep_ms(5000);
+
     // Wait for Fortuna source threads
     // To shutdown while the Integer test executes
     if (dump) printf("\t\tWaitForSourceShutdown\n");
@@ -68,4 +73,6 @@ bool IntegerTask::RunTask()
     delete pFortuna;
 
     if (dump) printf("Exit IntegerTask::RunTask\n");
+
+    return status;
 }

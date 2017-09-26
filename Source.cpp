@@ -7,6 +7,7 @@
 #include "ISourceBytes.h"
 #include "SleepUtils.h"
 #include "Pool.h"
+#include "PoolManager.h"
 #include "Fortuna.h"
 #include <cstdio>
 
@@ -50,6 +51,19 @@ void Source::ThreadExecute()
     bool dump = true;
     if (dump) printf("Begin Source::ThreadExecute %d\n", m_sourceNumber);
 
+    if (m_pools.empty())
+    {
+        PoolManager *poolmgr = m_pFortuna->GetPoolManager();
+        m_pools = poolmgr->GetPools();
+
+        if (m_pools.empty())
+        {
+            if (dump) printf("Source::ThreadExecute ERROR ***** m_pools is empty\n");
+            return;
+        }
+    }
+
+
     if (*m_shutdownFlag == true)
         return;
 
@@ -60,13 +74,14 @@ void Source::ThreadExecute()
     while(1)
     {
         // todo - add a sleep policy for this call
-        sleep_ms(200);
+        sleep_ms(100);
 
         if (*m_shutdownFlag == true)
             return;
 
         // todo - add a shutdown policy here?
-        if (count >= 1024)
+        if (dump) printf("Source::ThreadExecute source = %d, count = %d\n", m_sourceNumber, count);
+        if (count++ >= 1024)
             break;
 
         // todo - add error handling for this call

@@ -47,6 +47,7 @@ bool SourceManager::AssignSourcesAndStartThreads(std::vector<Source*>& sources)
 
     bool dump = true;
 
+    int count=0;
     pthread_t threadId = 0;
     int threadStatus = 0;
     for (Source* source: m_sources)
@@ -54,9 +55,11 @@ bool SourceManager::AssignSourcesAndStartThreads(std::vector<Source*>& sources)
         threadId = 0;
 
         threadStatus = pthread_create(&threadId, NULL, StartSourceThread, (void*)source);
+        if (dump && threadStatus) printf("\t\tpthread_create failed for thread %d\n", count);
         if (dump) printf("SourceMgr::AssignSourcesStartThreads thread tid=0x%lx\n", (unsigned long) threadId);
 
         m_sourceThreads.push_back(threadId);
+        ++count;
     }
     return true;
 }

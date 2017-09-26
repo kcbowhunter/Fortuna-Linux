@@ -26,6 +26,8 @@ public:
 
     void JoinSourceThreads();
 
+    Fortuna *GetFortuna() { return m_pFortuna; }
+
 private:
     Fortuna *m_pFortuna;
     PoolManager *m_poolManager;

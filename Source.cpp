@@ -8,6 +8,8 @@
 #include "ISourceBytes.h"
 #include "SleepUtils.h"
 #include "Pool.h"
+#include "Fortuna.h"
+#include <cstdio>
 
 using namespace SleepUtils;
 
@@ -31,6 +33,9 @@ Source::Source(ISourceBytes *pSourceBytes)
 
 Source::~Source()
 {
+    bool dumpCtor = m_sourceManager->GetFortuna()->DumpCtor();
+    if (dumpCtor) printf("Begin Source %d Dtor\n", m_sourceNumber);
+
     if (m_pSourceBytes != nullptr)
     {
         delete m_pSourceBytes;

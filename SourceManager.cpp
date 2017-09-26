@@ -27,6 +27,9 @@ SourceManager::SourceManager(Fortuna *fortuna)
 
 SourceManager::~SourceManager()
 {
+    bool dumpCtor = m_pFortuna->DumpCtor();
+    if (dumpCtor) printf("Begin SourceManager Dtor\n");
+
     JoinSourceThreads();
 
     for(Source *s : m_sources)

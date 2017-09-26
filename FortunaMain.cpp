@@ -14,13 +14,13 @@ int main(int argc, char* argv[])
 
    auto *pFortuna = new Fortuna();
 
-    int count = 0;
+   int count = 0;
    int seconds = 5;
-    for (int i=0; i<seconds; ++i)
-    {
-        sleep(1);
-        printf("FortunaMain %d seconds\n", ++count);
-    }
+   for (int i=0; i<seconds; ++i)
+   {
+       sleep(1);
+       printf("FortunaMain %d seconds\n", ++count);
+   }
 
    delete pFortuna;
 

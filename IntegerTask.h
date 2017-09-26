@@ -21,6 +21,8 @@ public:
 
     virtual bool RunTask();
 
+    static ITask* Create() { return new IntegerTask();}
+
 private:
 
 };

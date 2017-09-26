@@ -12,6 +12,8 @@ class ITask
 public:
     virtual bool RunTask() = 0;
 
+    virtual ~ITask() {}
+
 };
 
 #endif //FORTUNA_LINUX_ITASK_H
